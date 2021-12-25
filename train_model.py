@@ -16,10 +16,9 @@ encoder = LabelEncoder()
 n_cols = len(descriptive.T)
 for i in range(n_cols):
     descriptive[:,i] = encoder.fit_transform(descriptive[:,i])
-target = encoder.fit_transform(target)
 
 
-descriptive_train, descriptive_test, target_train, target_test = train_test_split(descriptive, target, test_size = 0.50, random_state = 0)
+descriptive_train, descriptive_test, target_train, target_test = train_test_split(descriptive, target, test_size = 0.20, random_state = 0)
 
 
 standard_scaler = StandardScaler()
