@@ -18,14 +18,14 @@ for i in range(n_cols):
     descriptive[:,i] = encoder.fit_transform(descriptive[:,i])
 
 
-descriptive_train, descriptive_test, target_train, target_test = train_test_split(descriptive, target, test_size = 0.20, random_state = 0)
+descriptive_train, descriptive_test, target_train, target_test = train_test_split(descriptive, target, test_size = 0.20, random_state = 0, )
 
 
 standard_scaler = StandardScaler()
 descriptive_train[:,:] = standard_scaler.fit_transform(descriptive_train[:,:]) #calcula e aplica
 descriptive_test[:,:] = standard_scaler.transform(descriptive_test[:,:]) #aplica
 
-classifier = SVC() #Our Model!
+classifier = SVC(kernel='linear', C=1)
 classifier.fit(descriptive_train, target_train)
 prediction = classifier.predict(descriptive_test)
 

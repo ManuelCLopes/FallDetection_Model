@@ -12,17 +12,21 @@ get file values, and prepare like data was prepared on data preparation, and sen
 '''
 query = [[]]
 
-file = io.BytesIO(open("InputTest/F14_SA02_R04.txt", 'rb').read().replace(b';',b''))
-data = np.genfromtxt(file,dtype=int,delimiter=',')
+#file = io.BytesIO(open("InputTest/D08_SA02_R03.txt", 'rb').read().replace(b';',b''))
+#file = io.BytesIO(open("InputTest/F12_SA02_R04.txt", 'rb').read().replace(b';',b''))
+#file = io.BytesIO(open("InputTest/F14_SA02_R04.txt", 'rb').read().replace(b';',b''))
+#data = np.genfromtxt(file,dtype=int,delimiter=',')
+
+data = pd.read_csv("fall1.csv", header=None)
 
 line = []
 for col in range(len(data.T)):
-    min_ = min(data[:, col])
-    max_ = max(data[:, col])
-    mean_ = np.mean(data[:, col])
-    variance = np.var(data[:, col])
-    k = kurtosis(data[:, col])
-    s = skew(data[:, col])
+    min_ = min(data.iloc[:, col])
+    max_ = max(data.iloc[:, col])
+    mean_ = np.mean(data.iloc[:, col])
+    variance = np.var(data.iloc[:, col])
+    k = kurtosis(data.iloc[:, col])
+    s = skew(data.iloc[:, col])
     
     line.append(min_)
     line.append(max_)
