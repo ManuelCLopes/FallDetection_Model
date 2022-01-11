@@ -1,31 +1,34 @@
+from email import message
 import smtplib
 
-EMAIL_SENDER = "falldetection.isi@gmail.com"
-PASSWORD = "%GB675R87t87bn7Ss_Ss"
+import email.utils
+from email.mime.text import MIMEText
 
-sender = EMAIL_SENDER
-receivers = ['manuelclopes99@gmail.com', 'pv22382@alunos.estgv.ipv.pt']
+def send_email():
+   EMAIL_SENDER = "falldetection.isi@gmail.com"
+   PASSWORD = "%GB675R87t87bn7Ss_Ss"
 
-message = """From: Fall Alert! <falldetection.isi@gmail.com>
-To: Manager <to@todomain.com>
-Subject: SMTP e-mail test
-
-This is a test e-mail message.
-"""
+   sender = EMAIL_SENDER
+   receivers = ['manuelclopes99@gmail.com']
 
 
-smtpObj = smtplib.SMTP('smtp.gmail.com')
-smtpObj.ehlo()
-smtpObj.starttls()
-smtpObj.ehlo()
-smtpObj.login(EMAIL_SENDER, PASSWORD)
+   # Create the message
+   msg = MIMEText('It was detected a fall of  worker xxxxx on location yyyyy.')
+   msg['To'] = email.utils.formataddr(('Manager1',
+                                       receivers[0]))
+   msg['From'] = email.utils.formataddr(('Fall Detection System',
+                                       EMAIL_SENDER))
+   msg['Subject'] = 'FALL ALERT!'
 
-smtpObj.set_debuglevel(True)
-try:
-   smtpObj.sendmail(sender, receivers, message)         
-   print ("Successfully sent email")
-except:
-   print ("Error: unable to send email")
+   smtpObj = smtplib.SMTP('smtp.gmail.com')
+   smtpObj.ehlo()
+   smtpObj.starttls()
+   smtpObj.ehlo()
+   smtpObj.login(EMAIL_SENDER, PASSWORD)
 
-
-
+   smtpObj.set_debuglevel(True)
+   try:
+      smtpObj.sendmail(sender, receivers, msg.as_string())         
+      return True
+   except:
+      return False
