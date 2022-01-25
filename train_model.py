@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, accuracy_score  
 
 from sklearn.svm import SVC
+
 import joblib
   
 dataframe = pd.read_csv('test.csv')
@@ -25,7 +26,7 @@ standard_scaler = StandardScaler()
 descriptive_train[:,:] = standard_scaler.fit_transform(descriptive_train[:,:]) #calcula e aplica
 descriptive_test[:,:] = standard_scaler.transform(descriptive_test[:,:]) #aplica
 
-classifier = SVC(kernel='linear', C=1)
+classifier = SVC()
 classifier.fit(descriptive_train, target_train)
 prediction = classifier.predict(descriptive_test)
 
