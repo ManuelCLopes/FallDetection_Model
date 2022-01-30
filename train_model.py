@@ -19,7 +19,7 @@ for i in range(n_cols):
     descriptive[:,i] = encoder.fit_transform(descriptive[:,i])
 
 
-descriptive_train, descriptive_test, target_train, target_test = train_test_split(descriptive, target, test_size = 0.20, random_state = 0, )
+descriptive_train, descriptive_test, target_train, target_test = train_test_split(descriptive, target, test_size = 0.15, random_state = 0, )
 
 
 standard_scaler = StandardScaler()
