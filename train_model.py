@@ -13,14 +13,7 @@ dataframe = pd.read_csv('test.csv')
 descriptive = dataframe.iloc[:, :54].values
 target = dataframe.iloc[:, 54].values
 
-encoder = LabelEncoder()
-n_cols = len(descriptive.T)
-for i in range(n_cols):
-    descriptive[:,i] = encoder.fit_transform(descriptive[:,i])
-
-
-descriptive_train, descriptive_test, target_train, target_test = train_test_split(descriptive, target, test_size = 0.15, random_state = 0, )
-
+descriptive_train, descriptive_test, target_train, target_test = train_test_split(descriptive, target, test_size = 0.20, random_state = 0)
 
 standard_scaler = StandardScaler()
 descriptive_train[:,:] = standard_scaler.fit_transform(descriptive_train[:,:]) #calcula e aplica
