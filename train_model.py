@@ -1,5 +1,6 @@
 import pandas as pd
-from sklearn.preprocessing import LabelEncoder
+import matplotlib.pyplot as plt
+import plotMAPS as pmaps
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, accuracy_score  
@@ -30,3 +31,8 @@ accuracy = accuracy_score(target_test, prediction)
 print("\nAccuracy: " + str(accuracy))
 matrix = confusion_matrix(target_test, prediction)
 print("\nMatrix:\n" + str(matrix)) 
+
+plt.figure(figsize=(3.5,3.5))
+m_labels= {'Fall', 'Activity'}
+pmaps.plot_confusion_matrix(matrix, classes = m_labels, title='confusion matrix')
+plt.show()
